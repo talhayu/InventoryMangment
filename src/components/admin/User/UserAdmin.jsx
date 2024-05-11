@@ -12,19 +12,17 @@ function UserAdmin() {
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [createFormClosed, setCreateFormClosed] = useState(false);
 
-  const data = localStorage.getItem('userData');
-  const convert = JSON.parse(data);
-  const token = convert.token;
-
-  if (!convert || convert.role !== 'admin') {
-    return <Navigate to="/unauthorized" />;
-  }
-  const headers = {
-    Authorization: `${token}`
-  };
+ 
 
   useEffect(() => {
     const fetchData = async () => {
+      const data = localStorage.getItem('userData');
+      const convert = JSON.parse(data);
+      const token = convert.token;
+    
+      const headers = {
+        Authorization: `${token}`
+      };
       try {
         const response = await axios.get('http://localhost:5050/api/vi/admin/user/find', {headers});
         setUsers(response.data.msg.data);
@@ -37,6 +35,18 @@ function UserAdmin() {
 
     fetchData();
   }, [createFormClosed]);
+
+  const data = localStorage.getItem('userData');
+  const convert = JSON.parse(data);
+  const token = convert.token;
+  const headers = {
+    Authorization: `${token}`
+  };
+
+  if (!convert || convert.role !== 'admin') {
+    return <Navigate to="/unauthorized" />;
+  }
+  
 
   const toggleCreateForm = () => {
     setShowCreateForm(!showCreateForm);

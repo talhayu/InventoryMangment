@@ -16,16 +16,6 @@ function BatchSales() {
   const [createFormClosed, setCreateFormClosed] = useState(false);
   const [updatingBatchId, setUpdatingBatchId] = useState(null);
   const [updatedBatchSales, setUpdatedBatchSales] = useState({});
-  const data = localStorage.getItem('userData');
-  const convert = JSON.parse(data);
-  const token = convert.token;
- 
-  console.log(convert);
-
-  if (!convert || convert.role !== 'user') {
-    return <Navigate to="/unauthorized" />;
-  }
- 
 
 
 
@@ -33,6 +23,17 @@ function BatchSales() {
 
   useEffect(() => {
     const fetchData = async () => {
+      const data = localStorage.getItem('userData');
+      const convert = JSON.parse(data);
+      const token = convert.token;
+     
+      console.log(convert);
+    
+      if (!convert || convert.role !== 'user') {
+        return <Navigate to="/unauthorized" />;
+      }
+     
+    
       try {
         const headers = {
           Authorization: `${token}`
@@ -51,6 +52,18 @@ function BatchSales() {
 
     fetchData();
   }, [createFormClosed, updatingBatchId]);
+
+  const data = localStorage.getItem('userData');
+  const convert = JSON.parse(data);
+  const token = convert.token;
+  if (!convert || convert.role !== 'user') {
+    return <Navigate to="/unauthorized" />;
+  }
+ 
+
+  const headers = {
+    Authorization: `${token}`
+  };
 
   const toggleCreateForm = () => {
     setShowCreateForm(!showCreateForm);

@@ -18,18 +18,20 @@ function CompanyAdmin() {
 
     const [editingCompanyId, setEditingCompanyId] = useState(null);
 
-    const data = localStorage.getItem('userData');
 
-    const convert = JSON.parse(data);
-    
-    const token = convert.token;
 
-    if (!convert || convert.role !== 'admin') {
-        return <Navigate to="/unauthorized" />;
-    }
 
     useEffect(() => {
         const fetchData = async () => {
+
+            const data = localStorage.getItem('userData');
+
+            const convert = JSON.parse(data);
+
+            const token = convert.token;
+            const headers = {
+                Authorization: `${token}`
+            };
             try {
                 const response = await axios.get('http://localhost:5050/api/vi/admin/company/find', { headers });
                 setCompany(response.data.msg.data);
@@ -43,10 +45,20 @@ function CompanyAdmin() {
         fetchData();
     }, [createFormClosed, editingCompanyId]);
 
-    
+
+    const data = localStorage.getItem('userData');
+
+    const convert = JSON.parse(data);
+
+    const token = convert.token;
     const headers = {
         Authorization: `${token}`
     };
+
+    if (!convert || convert.role !== 'admin') {
+        return <Navigate to="/unauthorized" />;
+    }
+
 
     const handleUpdateClick = (companyId) => {
         setEditingCompanyId(companyId);
@@ -72,7 +84,7 @@ function CompanyAdmin() {
         }
     };
 
- 
+
 
     const toggleCreateForm = () => {
         setShowCreateForm(!showCreateForm);
@@ -162,14 +174,14 @@ function CompanyAdmin() {
                                     {editingCompanyId === element._id ? (
                                         <>
                                             <button onClick={() => handleSaveUpdate(element._id)}>Save</button>
-                                          
+
                                         </>
                                     ) : (
                                         <button onClick={() => handleUpdateClick(element._id)}>Update</button>
                                     )}
                                 </td>
                                 <td>
-                                <button onClick={() => handleDeleteClick(element._id)}>Delete</button>
+                                    <button onClick={() => handleDeleteClick(element._id)}>Delete</button>
                                 </td>
                             </tr>
                         ))}

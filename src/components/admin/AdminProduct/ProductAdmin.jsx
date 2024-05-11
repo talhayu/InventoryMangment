@@ -15,17 +15,17 @@ function ProductAdmin() {
   const [editingProductId, setEditingProductId] = useState(null);
   const [updatedProduct, setUpdatedProduct] = useState({});
 
-  const data = localStorage.getItem('userData');
-  const convert = JSON.parse(data);
-  const token = convert.token;
-  if (!convert || convert.role !== 'admin') {
-    return <Navigate to="/unauthorized" />;
-  }
-  const headers = {
-    Authorization: `${token}`
-  };
+
+
 
   useEffect(() => {
+
+    const data = localStorage.getItem('userData');
+    const convert = JSON.parse(data);
+    const token = convert.token;
+    const headers = {
+      Authorization: `${token}`
+    };
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:5050/api/vi/admin/product/find', { headers });
@@ -40,7 +40,17 @@ function ProductAdmin() {
     fetchData();
   }, [createFormClosed, editingProductId]);
 
+  const data = localStorage.getItem('userData');
+  const convert = JSON.parse(data);
+  const token = convert.token;
 
+  const headers = {
+    Authorization: `${token}`
+  };
+  
+  if (!convert || convert.role !== 'admin') {
+    return <Navigate to="/unauthorized" />;
+  }
  
 
   const toggleCreateForm = () => {

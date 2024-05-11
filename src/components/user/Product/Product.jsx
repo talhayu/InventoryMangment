@@ -15,12 +15,13 @@ function Product() {
   const [createFormClosed, setCreateFormClosed] = useState(false);
   const [editingProductId, setEditingProductId] = useState(null);
   const [updatedProduct, setUpdatedProduct] = useState({});
-  const data = localStorage.getItem('userData');
-  const convert = JSON.parse(data);
-  const token = convert.token;
+
 
   useEffect(() => {
     const fetchData = async () => {
+      const data = localStorage.getItem('userData');
+      const convert = JSON.parse(data);
+      const token = convert.token;
       try {
         const headers = {
           Authorization: `${token}`
@@ -39,6 +40,10 @@ function Product() {
 
     fetchData();
   }, [createFormClosed, editingProductId]);
+
+  const data = localStorage.getItem('userData');
+  const convert = JSON.parse(data);
+  const token = convert.token;
 
   const toggleCreateForm = () => {
     setShowCreateForm(!showCreateForm);
