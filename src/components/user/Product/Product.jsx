@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import CreateProductForm from './CreateProductForm';
 import { Link } from 'react-router-dom';
 import Navbar from '../../Extra/Navbar';
-Navbar
+
 
 
 function Product() {
