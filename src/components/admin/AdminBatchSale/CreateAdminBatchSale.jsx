@@ -26,7 +26,7 @@ function CreateAdminBatchSale({ onClose }) {
           };
           console.log(formData)
           const response = await axios.post(
-            'http://localhost:5050/api/vi/admin/batchSale/create',
+            'http://13.201.135.174:5050/api/vi/admin/batchSale/create',
             formData,
             { headers }
           );

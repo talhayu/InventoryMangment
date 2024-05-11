@@ -35,7 +35,7 @@ function CreateUserAdminForm({ onClose }) {
       };
 
       const response = await axios.post(
-        'http://localhost:5050/api/vi/admin/company/create',
+        'http://13.201.135.174:5050/api/vi/admin/company/create',
         formData,
         { headers }
       );

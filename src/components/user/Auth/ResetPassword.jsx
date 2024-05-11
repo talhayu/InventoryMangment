@@ -34,7 +34,7 @@ function ResetPassword() {
             password: password
         }
         console.log(password)
-      const response = await axios.get(`http://localhost:5050/api/vi/auth/reset-password/${userId}/${token}/${password}`, body);
+      const response = await axios.get(`http://13.201.135.174:5050/api/vi/auth/reset-password/${userId}/${token}/${password}`, body);
       console.log(response)
      if(response.status==200){
         toast.success('pasword udopated succesfully')

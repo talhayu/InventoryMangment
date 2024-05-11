@@ -33,7 +33,7 @@ function CompanyAdmin() {
                 Authorization: `${token}`
             };
             try {
-                const response = await axios.get('http://localhost:5050/api/vi/admin/company/find', { headers });
+                const response = await axios.get('http://13.201.135.174:5050/api/vi/admin/company/find', { headers });
                 setCompany(response.data.msg.data);
                 setLoading(false);
             } catch (error) {
@@ -70,7 +70,7 @@ function CompanyAdmin() {
     const handleSaveUpdate = async (companyId, updatedData) => {
         try {
             const response = await axios.patch(
-                `http://localhost:5050/api/vi/admin/company/findByIdAndUpdate/${companyId}`,
+                `http://13.201.135.174:5050/api/vi/admin/company/findByIdAndUpdate/${companyId}`,
                 updatedData,
                 { headers }
             );
@@ -96,7 +96,7 @@ function CompanyAdmin() {
 
     const handleDeleteClick = async (companyId) => {
         try {
-            await axios.delete(`http://localhost:5050/api/vi/admin/company/findByIdAndDelete/${companyId}`, { headers });
+            await axios.delete(`http://13.201.135.174:5050/api/vi/admin/company/findByIdAndDelete/${companyId}`, { headers });
             setCompany(company.filter(element => element._id !== companyId));
         } catch (error) {
             console.error('Error deleting element:', error);

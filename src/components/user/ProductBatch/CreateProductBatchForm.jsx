@@ -25,7 +25,7 @@ function CreateProductBatchForm({ onClose, productId }) {
       };
       console.log(formData)
       const response = await axios.post(
-        'http://localhost:5050/api/vi/productBatch/create',
+        'http://13.201.135.174:5050/api/vi/productBatch/create',
         formData,
         { headers }
       );

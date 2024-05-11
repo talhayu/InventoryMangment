@@ -25,7 +25,7 @@ function CreateProductForm({ onClose, companyId }) {
       };
       console.log(formData)
       const response = await axios.post(
-        'http://localhost:5050/api/vi/product/create',
+        'http://13.201.135.174:5050/api/vi/product/create',
         formData,
         { headers }
       );

@@ -25,7 +25,7 @@ function CreateBatchSalesForm({ onClose, batchId }) {
       };
       console.log(formData)
       const response = await axios.post(
-        'http://localhost:5050/api/vi/batchSales/create',
+        'http://13.201.135.174:5050/api/vi/batchSales/create',
         formData,
         { headers }
       );

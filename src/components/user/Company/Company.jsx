@@ -23,7 +23,7 @@ function Company() {
           Authorization: `${token}`
         };
 
-        const response = await axios.get('http://localhost:5050/api/vi/company/getAllCompanies', { headers });
+        const response = await axios.get('http://13.201.135.174:5050/api/vi/company/getAllCompanies', { headers });
         // console.log(response)
         setCompanies(response.data.msg.data);
       } catch (error) {
@@ -65,7 +65,7 @@ function Company() {
       }
 
       const response = await axios.patch(
-        `http://localhost:5050/api/vi/company/findByIdAndUpdate/${companyId}`,
+        `http://13.201.135.174:5050/api/vi/company/findByIdAndUpdate/${companyId}`,
         updatedData,
         { headers }
       );
@@ -97,7 +97,7 @@ function Company() {
       };
 
       const response = await axios.delete(
-        `http://localhost:5050/api/vi/company/findByIdAndDelete/${companyId}`,
+        `http://13.201.135.174:5050/api/vi/company/findByIdAndDelete/${companyId}`,
         { headers }
       );
       if(response){

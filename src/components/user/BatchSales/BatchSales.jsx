@@ -38,7 +38,7 @@ function BatchSales() {
         const headers = {
           Authorization: `${token}`
         };
-        const response = await axios.get(`http://localhost:5050/api/vi/batchSales/findByBatchName/${batchId}`, { headers });
+        const response = await axios.get(`http://13.201.135.174:5050/api/vi/batchSales/findByBatchName/${batchId}`, { headers });
         setBatchSales(response.data.msg.data);
         console.log(response)
       } catch (error) {
@@ -85,7 +85,7 @@ function BatchSales() {
       };
 
       const response = await axios.patch(
-        `http://localhost:5050/api/vi/batchSales/getByIdAndUpdate/${batchId}`,
+        `http://13.201.135.174:5050/api/vi/batchSales/getByIdAndUpdate/${batchId}`,
         updatedData,
         { headers }
       );
@@ -116,7 +116,7 @@ function BatchSales() {
       };
 
       const response = await axios.delete(
-        `http://localhost:5050/api/vi/batchSales/getByIdAndDelete/${batchId}`,
+        `http://13.201.135.174:5050/api/vi/batchSales/getByIdAndDelete/${batchId}`,
         { headers }
       );
 

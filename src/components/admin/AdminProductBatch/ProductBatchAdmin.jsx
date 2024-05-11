@@ -28,7 +28,7 @@ function ProductBatchAdmin() {
           const headers = {
             Authorization: `${token}`
           };
-          const response = await axios.get(`http://localhost:5050/api/vi/admin/productBatch/find`, { headers });
+          const response = await axios.get(`http://13.201.135.174:5050/api/vi/admin/productBatch/find`, { headers });
           console.log('das', response)
           setProductBatch(response.data.msg.data);
           console.log(productBatch)
@@ -64,7 +64,7 @@ function ProductBatchAdmin() {
         };
   
         const response = await axios.patch(
-          `http://localhost:5050/api/vi/admin/productBatch/findByIdAndUpdate/${productId}`,
+          `http://13.201.135.174:5050/api/vi/admin/productBatch/findByIdAndUpdate/${productId}`,
           updatedData,
           { headers }
         );
@@ -98,7 +98,7 @@ function ProductBatchAdmin() {
         };
   
         const response = await axios.delete(
-          `http://localhost:5050/api/vi/admin/productBatch/findByIdAndDelete/${productId}`,
+          `http://13.201.135.174:5050/api/vi/admin/productBatch/findByIdAndDelete/${productId}`,
           { headers }
         );
         if(response){

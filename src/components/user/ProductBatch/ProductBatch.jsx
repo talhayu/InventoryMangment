@@ -25,7 +25,7 @@ function ProductBatch() {
         const headers = {
           Authorization: `${token}`
         };
-        const response = await axios.get(`http://localhost:5050/api/vi/productBatch/findByProductName/${productId}`, { headers });
+        const response = await axios.get(`http://13.201.135.174:5050/api/vi/productBatch/findByProductName/${productId}`, { headers });
         setProductBatch(response.data.msg.data);
       } catch (error) {
         if (error.response && error.response.status === 404) {
@@ -59,7 +59,7 @@ function ProductBatch() {
       };
 
       const response = await axios.patch(
-        `http://localhost:5050/api/vi/productBatch/getByIdAndUpdate/${productId}`,
+        `http://13.201.135.174:5050/api/vi/productBatch/getByIdAndUpdate/${productId}`,
         updatedData,
         { headers }
       );
@@ -92,7 +92,7 @@ function ProductBatch() {
       };
 
       const response = await axios.delete(
-        `http://localhost:5050/api/vi/productBatch/findByIdAndDelete/${productId}`,
+        `http://13.201.135.174:5050/api/vi/productBatch/findByIdAndDelete/${productId}`,
         { headers }
       );
       if(response){

@@ -14,7 +14,7 @@ function ForgetPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5050/api/vi/auth/forget-password', {
+      const response = await axios.post('http://13.201.135.174:5050/api/vi/auth/forget-password', {
         email,
       });
      if(response.status==200){

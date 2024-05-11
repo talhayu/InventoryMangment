@@ -31,7 +31,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5050/api/vi/auth/register', {
+      const response = await axios.post('http://13.201.135.174:5050/api/vi/auth/register', {
         email,
         password,
         name

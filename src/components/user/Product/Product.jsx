@@ -26,7 +26,7 @@ function Product() {
         const headers = {
           Authorization: `${token}`
         };
-        const response = await axios.get(`http://localhost:5050/api/vi/product/findByCompanyName/${companyId}`, { headers });
+        const response = await axios.get(`http://13.201.135.174:5050/api/vi/product/findByCompanyName/${companyId}`, { headers });
         setProduct(response.data.msg.data);
       } catch (error) {
         if (error.response.status === 404) {
@@ -71,7 +71,7 @@ function Product() {
       }
 
       const response = await axios.patch(
-        `http://localhost:5050/api/vi/product/findByIdAndUpdate/${productId}`,
+        `http://13.201.135.174:5050/api/vi/product/findByIdAndUpdate/${productId}`,
         updatedData,
         { headers }
       );
@@ -97,7 +97,7 @@ function Product() {
       };
 
       const response = await axios.delete(
-        `http://localhost:5050/api/vi/product/findByIdAndDelete/${productId}`,
+        `http://13.201.135.174:5050/api/vi/product/findByIdAndDelete/${productId}`,
         { headers }
       );
 
