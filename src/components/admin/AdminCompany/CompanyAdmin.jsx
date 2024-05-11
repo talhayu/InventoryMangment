@@ -27,6 +27,23 @@ function CompanyAdmin() {
     if (!convert || convert.role !== 'admin') {
         return <Navigate to="/unauthorized" />;
     }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:5050/api/vi/admin/company/find', { headers });
+                setCompany(response.data.msg.data);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error fetching Company:', error);
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [createFormClosed, editingCompanyId]);
+
+    
     const headers = {
         Authorization: `${token}`
     };
@@ -55,20 +72,7 @@ function CompanyAdmin() {
         }
     };
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://localhost:5050/api/vi/admin/company/find', { headers });
-                setCompany(response.data.msg.data);
-                setLoading(false);
-            } catch (error) {
-                console.error('Error fetching Company:', error);
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, [createFormClosed, editingCompanyId]);
+ 
 
     const toggleCreateForm = () => {
         setShowCreateForm(!showCreateForm);
