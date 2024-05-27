@@ -28,7 +28,7 @@ function ProductAdmin() {
     };
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://13.201.135.174:5050/api/vi/admin/product/find', { headers });
+        const response = await axios.get('https://productinventory.appaloinc.com/api/vi/admin/product/find', { headers });
         setProduct(response.data.msg.data);
         setLoading(false);
       } catch (error) {
@@ -47,11 +47,11 @@ function ProductAdmin() {
   const headers = {
     Authorization: `${token}`
   };
-  
+
   if (!convert || convert.role !== 'admin') {
     return <Navigate to="/unauthorized" />;
   }
- 
+
 
   const toggleCreateForm = () => {
     setShowCreateForm(!showCreateForm);
@@ -73,27 +73,27 @@ function ProductAdmin() {
   const handleSaveClick = async productId => {
     try {
 
-      
+
       const updatedData = updatedProduct[productId];
       if (!updatedData) {
         console.error('No data to update');
         return;
       }
       const response = await axios.patch(
-        `http://13.201.135.174:5050/api/vi/admin/product/findByIdAndUpdate/${productId}`,
+        `https://productinventory.appaloinc.com/api/vi/admin/product/findByIdAndUpdate/${productId}`,
         updatedData,
         { headers }
       );
       setUpdatedProduct(prevState => ({ ...prevState, [productId]: {} }));
       if (response.data) {
         toast.success('Product updated successfully!');
-    
-     
+
+
       }
     } catch (error) {
       console.error('Error updating product:', error);
       toast.error('Failed to update product. Please try again later.');
-    }finally {
+    } finally {
       setEditingProductId(null);
     }
   };
@@ -112,12 +112,12 @@ function ProductAdmin() {
 
   const handleDeleteClick = async (productId) => {
     try {
-        await axios.delete(`http://13.201.135.174:5050/api/vi/admin/product/findByIdAndDelete/${productId}`, { headers });
-        setProduct(product.filter(element => element._id !== productId));
+      await axios.delete(`https://productinventory.appaloinc.com/api/vi/admin/product/findByIdAndDelete/${productId}`, { headers });
+      setProduct(product.filter(element => element._id !== productId));
     } catch (error) {
-        console.error('Error deleting element:', error);
+      console.error('Error deleting element:', error);
     }
-};
+  };
 
   return (
     <div>
@@ -148,18 +148,18 @@ function ProductAdmin() {
                 <td style={{ border: '1px solid #dddddd', textAlign: 'left', padding: '8px' }}>{element.companyId}</td>
                 <td style={{ border: '1px solid #dddddd', textAlign: 'left', padding: '8px' }}>{element.companyName}</td>
                 <td style={{ border: '1px solid #dddddd', textAlign: 'left', padding: '8px' }}>
-                {editingProductId === element._id ? (
+                  {editingProductId === element._id ? (
                     <input
                       type="text"
                       value={updatedProduct[element._id]?.productName || element.productName}
                       onChange={e => handleChange(e, element._id, 'productName')}
                     />
                   ) : (
-                   element.productName
+                    element.productName
                   )}
                 </td>
                 <td style={{ border: '1px solid #dddddd', textAlign: 'left', padding: '8px' }}>
-                {editingProductId === element._id ? (
+                  {editingProductId === element._id ? (
                     <input
                       type="date"
                       value={updatedProduct[element._id]?.issueDate || element.issueDate}
@@ -173,7 +173,7 @@ function ProductAdmin() {
                   {editingProductId === element._id ? (
                     <>
                       <button onClick={() => handleSaveClick(element._id)}>Save</button>
-                      
+
                     </>
                   ) : (
                     <button onClick={() => handleUpdateClick(element._id)}>Update</button>

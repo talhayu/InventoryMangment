@@ -25,7 +25,7 @@ function CreateProductForm({ onClose, companyId }) {
       };
       console.log(formData)
       const response = await axios.post(
-        'http://13.201.135.174:5050/api/vi/product/create',
+        'https://productinventory.appaloinc.com/api/vi/product/create',
         formData,
         { headers }
       );
@@ -56,14 +56,14 @@ function CreateProductForm({ onClose, companyId }) {
         <h2>Create Product</h2>
         <form onSubmit={handleSubmit}>
           <label>
-             Product Name:
+            Product Name:
             <input type="text" name="productName" value={formData.productName} onChange={handleChange} required />
           </label>
           <label>
             Date:
             <input type="date" name="issueDate" value={formData.issueDate} onChange={handleChange} required />
           </label>
-          
+
           <button type="submit">Create</button>
         </form>
       </div>

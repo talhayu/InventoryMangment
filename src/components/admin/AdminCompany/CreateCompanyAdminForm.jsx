@@ -35,12 +35,12 @@ function CreateUserAdminForm({ onClose }) {
       };
 
       const response = await axios.post(
-        'http://13.201.135.174:5050/api/vi/admin/company/create',
+        'https://productinventory.appaloinc.com/api/vi/admin/company/create',
         formData,
         { headers }
       );
-      if(response){
-          toast.success('User Created Successfully');
+      if (response) {
+        toast.success('User Created Successfully');
       }
 
       setTimeout(() => {
@@ -62,7 +62,7 @@ function CreateUserAdminForm({ onClose }) {
         <span className="close" onClick={onClose}>X</span>
         <h2>Create User</h2>
         <form onSubmit={handleSubmit}>
-        <label>
+          <label>
             UserId:
             <input type="text" name="userId" value={formData.userId} onChange={handleChange} required />
           </label>
@@ -78,7 +78,7 @@ function CreateUserAdminForm({ onClose }) {
             Contact:
             <input type="text" name="contact" value={formData.contact} onChange={handleChange} required />
           </label>
-          
+
           <button type="submit">Create</button>
         </form>
       </div>

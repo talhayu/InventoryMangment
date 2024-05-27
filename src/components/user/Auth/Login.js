@@ -14,10 +14,10 @@ const Login = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
-    let img = [eye_close, eye_open];
+  let img = [eye_close, eye_open];
 
-    const inputRef = useRef();
-    const imagechg1 = useRef(null);
+  const inputRef = useRef();
+  const imagechg1 = useRef(null);
 
   function view() {
     if (inputRef.current.type === 'password') {
@@ -33,7 +33,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://13.201.135.174:5050/api/vi/auth/login', {
+      const response = await axios.post('https://productinventory.appaloinc.com/api/vi/auth/login', {
         email,
         password,
       });
@@ -53,7 +53,7 @@ const Login = () => {
       // console.log(from)
       // navigate(from, { replace: true });
     } catch (error) {
-      if (error.response && error.response.status === 400 ) {
+      if (error.response && error.response.status === 400) {
         console.log(error)
         toast.error('Invalid credentials')
       } else if (error.response && error.response.status === 401) {
@@ -74,11 +74,11 @@ const Login = () => {
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='enter email' required style={{ margin: '5px', padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '100%' }} />
           {/* <div style={{position: 'relative'}}> */}
           <input type="password" placeholder='enter password' value={password} onChange={(e) => setPassword(e.target.value)} required style={{ margin: '5px', padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '100%' }} ref={inputRef} />
-          <img src={eye_close} alt="" onClick={view} ref={imagechg1} style={{position: 'absolute', right: '0px', top: '63px'}} />
+          <img src={eye_close} alt="" onClick={view} ref={imagechg1} style={{ position: 'absolute', right: '0px', top: '63px' }} />
           {/* </div> */}
-          <p style={{width: '100%'}}>forget password?  <span  onClick={()=>{navigate('/forgetpassword')}} style={{color: 'green', textDecoration: 'underline', cursor: 'pointer', }}>click here</span></p>
-          <button type="submit" style={{ margin: '5px', padding: '10px', borderRadius: '5px', border: 'none',  width: '100%' }}>Login</button>
-   
+          <p style={{ width: '100%' }}>forget password?  <span onClick={() => { navigate('/forgetpassword') }} style={{ color: 'green', textDecoration: 'underline', cursor: 'pointer', }}>click here</span></p>
+          <button type="submit" style={{ margin: '5px', padding: '10px', borderRadius: '5px', border: 'none', width: '100%' }}>Login</button>
+
         </form>
       </div>
       <ToastContainer />

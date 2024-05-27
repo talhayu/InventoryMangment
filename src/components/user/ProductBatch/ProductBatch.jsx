@@ -25,7 +25,7 @@ function ProductBatch() {
         const headers = {
           Authorization: `${token}`
         };
-        const response = await axios.get(`http://13.201.135.174:5050/api/vi/productBatch/findByProductName/${productId}`, { headers });
+        const response = await axios.get(`https://productinventory.appaloinc.com/api/vi/productBatch/findByProductName/${productId}`, { headers });
         setProductBatch(response.data.msg.data);
       } catch (error) {
         if (error.response && error.response.status === 404) {
@@ -59,7 +59,7 @@ function ProductBatch() {
       };
 
       const response = await axios.patch(
-        `http://13.201.135.174:5050/api/vi/productBatch/getByIdAndUpdate/${productId}`,
+        `https://productinventory.appaloinc.com/api/vi/productBatch/getByIdAndUpdate/${productId}`,
         updatedData,
         { headers }
       );
@@ -70,7 +70,7 @@ function ProductBatch() {
         }
         return item;
       }));
-      if(response){
+      if (response) {
 
         toast.success('Product batch updated successfully!');
       }
@@ -92,10 +92,10 @@ function ProductBatch() {
       };
 
       const response = await axios.delete(
-        `http://13.201.135.174:5050/api/vi/productBatch/findByIdAndDelete/${productId}`,
+        `https://productinventory.appaloinc.com/api/vi/productBatch/findByIdAndDelete/${productId}`,
         { headers }
       );
-      if(response){
+      if (response) {
         toast.success('Product batch deleted successfully!');
 
       }

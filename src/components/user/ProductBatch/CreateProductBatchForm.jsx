@@ -25,7 +25,7 @@ function CreateProductBatchForm({ onClose, productId }) {
       };
       console.log(formData)
       const response = await axios.post(
-        'http://13.201.135.174:5050/api/vi/productBatch/create',
+        'https://productinventory.appaloinc.com/api/vi/productBatch/create',
         formData,
         { headers }
       );
@@ -60,10 +60,10 @@ function CreateProductBatchForm({ onClose, productId }) {
             <input type="number" name="quantity" value={formData.quantity} onChange={handleChange} required />
           </label>
           <label>
-           Date:
+            Date:
             <input type="date" name="date" value={formData.date} onChange={handleChange} required />
           </label>
-          
+
           <button type="submit">Create</button>
         </form>
       </div>

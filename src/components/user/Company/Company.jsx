@@ -23,7 +23,7 @@ function Company() {
           Authorization: `${token}`
         };
 
-        const response = await axios.get('http://13.201.135.174:5050/api/vi/company/getAllCompanies', { headers });
+        const response = await axios.get('https://productinventory.appaloinc.com/api/vi/company/getAllCompanies', { headers });
         // console.log(response)
         setCompanies(response.data.msg.data);
       } catch (error) {
@@ -38,7 +38,7 @@ function Company() {
     };
 
     fetchData();
-  }, [createFormClosed, editingCompanyId]); 
+  }, [createFormClosed, editingCompanyId]);
   // Fetch data whenever editingCompanyId state changes
   const toggleCreateForm = () => {
     setShowCreateForm(!showCreateForm);
@@ -65,11 +65,11 @@ function Company() {
       }
 
       const response = await axios.patch(
-        `http://13.201.135.174:5050/api/vi/company/findByIdAndUpdate/${companyId}`,
+        `https://productinventory.appaloinc.com/api/vi/company/findByIdAndUpdate/${companyId}`,
         updatedData,
         { headers }
       );
-      if(response){
+      if (response) {
         toast.success('Company Updated succesfully')
       }
 
@@ -78,7 +78,7 @@ function Company() {
 
       setUpdatedCompanies(prevState => ({ ...prevState, [companyId]: {} }));
 
-     
+
     } catch (error) {
       if (error.response && error.response.status == 404) {
         toast.error(error.response.data.msg.msg)
@@ -97,10 +97,10 @@ function Company() {
       };
 
       const response = await axios.delete(
-        `http://13.201.135.174:5050/api/vi/company/findByIdAndDelete/${companyId}`,
+        `https://productinventory.appaloinc.com/api/vi/company/findByIdAndDelete/${companyId}`,
         { headers }
       );
-      if(response){
+      if (response) {
         console.log(response)
         toast.success('Company deleted successfully!');
       }
@@ -202,7 +202,7 @@ function Company() {
       )}
       <h3 onClick={toggleCreateForm}>Don't have any company? Create company? Click here</h3>
       {showCreateForm && <CreateCompanyForm onClose={handleCreateFormClose} />}
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 }

@@ -19,26 +19,26 @@ function BatchSales() {
 
 
 
-  
+
 
   useEffect(() => {
     const fetchData = async () => {
       const data = localStorage.getItem('userData');
       const convert = JSON.parse(data);
       const token = convert.token;
-     
+
       console.log(convert);
-    
+
       if (!convert || convert.role !== 'user') {
         return <Navigate to="/unauthorized" />;
       }
-     
-    
+
+
       try {
         const headers = {
           Authorization: `${token}`
         };
-        const response = await axios.get(`http://13.201.135.174:5050/api/vi/batchSales/findByBatchName/${batchId}`, { headers });
+        const response = await axios.get(`https://productinventory.appaloinc.com/api/vi/batchSales/findByBatchName/${batchId}`, { headers });
         setBatchSales(response.data.msg.data);
         console.log(response)
       } catch (error) {
@@ -59,7 +59,7 @@ function BatchSales() {
   if (!convert || convert.role !== 'user') {
     return <Navigate to="/unauthorized" />;
   }
- 
+
 
   const headers = {
     Authorization: `${token}`
@@ -85,7 +85,7 @@ function BatchSales() {
       };
 
       const response = await axios.patch(
-        `http://13.201.135.174:5050/api/vi/batchSales/getByIdAndUpdate/${batchId}`,
+        `https://productinventory.appaloinc.com/api/vi/batchSales/getByIdAndUpdate/${batchId}`,
         updatedData,
         { headers }
       );
@@ -116,7 +116,7 @@ function BatchSales() {
       };
 
       const response = await axios.delete(
-        `http://13.201.135.174:5050/api/vi/batchSales/getByIdAndDelete/${batchId}`,
+        `https://productinventory.appaloinc.com/api/vi/batchSales/getByIdAndDelete/${batchId}`,
         { headers }
       );
 
@@ -175,14 +175,14 @@ function BatchSales() {
                   )}
                 </td>
                 <td>{updatingBatchId === element._id ? (
-                    <input
-                      type="date"
-                      value={updatedBatchSales[element._id]?.dateOfSale || element.dateOfSale}
-                      onChange={e => handleChange(e, element._id, 'dateOfSale')}
-                    />
-                  ) : (
-                    element.dateOfSale
-                  )}</td>
+                  <input
+                    type="date"
+                    value={updatedBatchSales[element._id]?.dateOfSale || element.dateOfSale}
+                    onChange={e => handleChange(e, element._id, 'dateOfSale')}
+                  />
+                ) : (
+                  element.dateOfSale
+                )}</td>
                 <td>
                   {updatingBatchId === element._id ? (
                     <button onClick={() => handleSaveClick(element._id, updatedBatchSales[element._id])}>Save</button>

@@ -14,16 +14,16 @@ function ForgetPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://13.201.135.174:5050/api/vi/auth/forget-password', {
+      const response = await axios.post('https://productinventory.appaloinc.com/api/vi/auth/forget-password', {
         email,
       });
-     if(response.status==200){
+      if (response.status == 200) {
         toast.success('forget password email sent')
         setEmail('')
-      
-     }
 
-      
+      }
+
+
 
 
     } catch (error) {
@@ -33,7 +33,7 @@ function ForgetPassword() {
         toast.error('Server error')
       }
       console.log(error);
-     
+
     }
   };
 
@@ -41,14 +41,14 @@ function ForgetPassword() {
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       <div style={{ width: '300px', padding: '20px', borderRadius: '10px', boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.2)' }}>
         <h2 style={{ textAlign: 'center' }}>ForgetPassword</h2>
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center',  position: 'relative' }}>
-        
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
+
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='enter email' required style={{ margin: '5px', padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '100%' }} />
-        
-          <button type="submit" style={{ margin: '5px', padding: '10px', borderRadius: '5px', border: 'none',  width: '100%' }}>Send Verification email</button>
-          
+
+          <button type="submit" style={{ margin: '5px', padding: '10px', borderRadius: '5px', border: 'none', width: '100%' }}>Send Verification email</button>
+
         </form>
-       
+
       </div>
       <ToastContainer />
     </div>

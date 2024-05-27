@@ -26,7 +26,7 @@ function CreateProductAdminForm({ onClose }) {
       };
 
       const response = await axios.post(
-        'http://13.201.135.174:5050/api/vi/admin/product/create',
+        'https://productinventory.appaloinc.com/api/vi/admin/product/create',
         formData,
         { headers }
       );

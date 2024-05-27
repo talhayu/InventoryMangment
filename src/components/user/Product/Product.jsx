@@ -26,7 +26,7 @@ function Product() {
         const headers = {
           Authorization: `${token}`
         };
-        const response = await axios.get(`http://13.201.135.174:5050/api/vi/product/findByCompanyName/${companyId}`, { headers });
+        const response = await axios.get(`https://productinventory.appaloinc.com/api/vi/product/findByCompanyName/${companyId}`, { headers });
         setProduct(response.data.msg.data);
       } catch (error) {
         if (error.response.status === 404) {
@@ -34,7 +34,7 @@ function Product() {
         } else if (error.response && error.response.status === 500) {
           toast.error('Internal server error');
         }
- 
+
       }
     };
 
@@ -71,14 +71,14 @@ function Product() {
       }
 
       const response = await axios.patch(
-        `http://13.201.135.174:5050/api/vi/product/findByIdAndUpdate/${productId}`,
+        `https://productinventory.appaloinc.com/api/vi/product/findByIdAndUpdate/${productId}`,
         updatedData,
         { headers }
       );
 
       setUpdatedProduct(prevState => ({ ...prevState, [productId]: {} }));
-      
-      if(response.data){
+
+      if (response.data) {
         toast.success('Product updated successfully!');
       }
     } catch (error) {
@@ -97,7 +97,7 @@ function Product() {
       };
 
       const response = await axios.delete(
-        `http://13.201.135.174:5050/api/vi/product/findByIdAndDelete/${productId}`,
+        `https://productinventory.appaloinc.com/api/vi/product/findByIdAndDelete/${productId}`,
         { headers }
       );
 
@@ -125,7 +125,7 @@ function Product() {
 
   return (
     <div>
-      <Navbar/>
+      <Navbar />
 
       {product.length > 0 && (
         <table style={{ borderCollapse: 'collapse', width: '100%', marginTop: '20px' }}>

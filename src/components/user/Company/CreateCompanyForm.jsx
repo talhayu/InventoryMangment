@@ -25,7 +25,7 @@ function CreateCompanyForm({ onClose }) {
       };
 
       const response = await axios.post(
-        'http://13.201.135.174:5050/api/vi/company/create',
+        'https://productinventory.appaloinc.com/api/vi/company/create',
         formData,
         { headers }
       );

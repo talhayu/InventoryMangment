@@ -1,5 +1,5 @@
 import axios from 'axios';
-import  { useState } from 'react';
+import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 
 function CreateBatchSalesForm({ onClose, batchId }) {
@@ -14,7 +14,7 @@ function CreateBatchSalesForm({ onClose, batchId }) {
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
-    }));  
+    }));
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +25,7 @@ function CreateBatchSalesForm({ onClose, batchId }) {
       };
       console.log(formData)
       const response = await axios.post(
-        'http://13.201.135.174:5050/api/vi/batchSales/create',
+        'https://productinventory.appaloinc.com/api/vi/batchSales/create',
         formData,
         { headers }
       );
@@ -60,10 +60,10 @@ function CreateBatchSalesForm({ onClose, batchId }) {
             <input type="number" name="soldQuantity" value={formData.soldQuantity} onChange={handleChange} required />
           </label>
           <label>
-           Date:
+            Date:
             <input type="date" name="date" value={formData.date} onChange={handleChange} required />
           </label>
-          
+
           <button type="submit">Create</button>
         </form>
       </div>

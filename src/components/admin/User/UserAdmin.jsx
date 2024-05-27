@@ -12,19 +12,19 @@ function UserAdmin() {
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [createFormClosed, setCreateFormClosed] = useState(false);
 
- 
+
 
   useEffect(() => {
     const fetchData = async () => {
       const data = localStorage.getItem('userData');
       const convert = JSON.parse(data);
       const token = convert.token;
-    
+
       const headers = {
         Authorization: `${token}`
       };
       try {
-        const response = await axios.get('http://13.201.135.174:5050/api/vi/admin/user/find', {headers});
+        const response = await axios.get('https://productinventory.appaloinc.com/api/vi/admin/user/find', { headers });
         setUsers(response.data.msg.data);
         setLoading(false);
       } catch (error) {
@@ -46,7 +46,7 @@ function UserAdmin() {
   if (!convert || convert.role !== 'admin') {
     return <Navigate to="/unauthorized" />;
   }
-  
+
 
   const toggleCreateForm = () => {
     setShowCreateForm(!showCreateForm);
@@ -58,7 +58,7 @@ function UserAdmin() {
 
   const handleDeleteClick = async (userId) => {
     try {
-      await axios.delete(`http://13.201.135.174:5050/api/vi/admin/user/delete/${userId}`, {headers});
+      await axios.delete(`https://productinventory.appaloinc.com/api/vi/admin/user/delete/${userId}`, { headers });
       setUsers(users.filter(user => user._id !== userId));
     } catch (error) {
       console.error('Error deleting user:', error);
@@ -100,10 +100,9 @@ function UserAdmin() {
       )}
       <h3 onClick={toggleCreateForm}> Create create? Click here</h3>
       {showCreateForm && <CreateUserAdminForm onClose={handleCreateFormClose} />}
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 }
 
 export default UserAdmin;
-    
