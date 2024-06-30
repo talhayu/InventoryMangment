@@ -24,7 +24,7 @@ function UserAdmin() {
         Authorization: `${token}`
       };
       try {
-        const response = await axios.get('https://productinventory.appaloinc.com/api/vi/admin/user/find', { headers });
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/vi/admin/user/find`, { headers });
         setUsers(response.data.msg.data);
         setLoading(false);
       } catch (error) {
@@ -58,7 +58,7 @@ function UserAdmin() {
 
   const handleDeleteClick = async (userId) => {
     try {
-      await axios.delete(`https://productinventory.appaloinc.com/api/vi/admin/user/delete/${userId}`, { headers });
+      await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/vi/admin/user/delete/${userId}`, { headers });
       setUsers(users.filter(user => user._id !== userId));
     } catch (error) {
       console.error('Error deleting user:', error);

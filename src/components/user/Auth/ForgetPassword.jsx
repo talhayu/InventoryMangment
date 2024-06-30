@@ -14,7 +14,7 @@ function ForgetPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://productinventory.appaloinc.com/api/vi/auth/forget-password', {
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/vi/auth/forget-password`, {
         email,
       });
       if (response.status == 200) {

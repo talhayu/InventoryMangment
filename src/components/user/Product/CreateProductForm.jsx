@@ -25,7 +25,7 @@ function CreateProductForm({ onClose, companyId }) {
       };
       console.log(formData)
       const response = await axios.post(
-        'https://productinventory.appaloinc.com/api/vi/product/create',
+        '${process.env.REACT_APP_BASE_URL}/api/vi/product/create',
         formData,
         { headers }
       );

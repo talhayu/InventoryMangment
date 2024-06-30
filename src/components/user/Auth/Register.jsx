@@ -31,7 +31,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://productinventory.appaloinc.com/api/vi/auth/register', {
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/vi/auth/register`, {
         email,
         password,
         name

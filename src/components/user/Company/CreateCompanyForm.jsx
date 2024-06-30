@@ -25,7 +25,7 @@ function CreateCompanyForm({ onClose }) {
       };
 
       const response = await axios.post(
-        'https://productinventory.appaloinc.com/api/vi/company/create',
+        `${process.env.REACT_APP_BASE_URL}/api/vi/company/create`,
         formData,
         { headers }
       );

@@ -28,7 +28,7 @@ function ProductBatchAdmin() {
         const headers = {
           Authorization: `${token}`
         };
-        const response = await axios.get(`https://productinventory.appaloinc.com/api/vi/admin/productBatch/find`, { headers });
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/vi/admin/productBatch/find`, { headers });
         console.log('das', response)
         setProductBatch(response.data.msg.data);
         console.log(productBatch)
@@ -64,7 +64,7 @@ function ProductBatchAdmin() {
       };
 
       const response = await axios.patch(
-        `https://productinventory.appaloinc.com/api/vi/admin/productBatch/findByIdAndUpdate/${productId}`,
+        `${process.env.REACT_APP_BASE_URL}/api/vi/admin/productBatch/findByIdAndUpdate/${productId}`,
         updatedData,
         { headers }
       );
@@ -98,7 +98,7 @@ function ProductBatchAdmin() {
       };
 
       const response = await axios.delete(
-        `https://productinventory.appaloinc.com/api/vi/admin/productBatch/findByIdAndDelete/${productId}`,
+        `${process.env.REACT_APP_BASE_URL}/api/vi/admin/productBatch/findByIdAndDelete/${productId}`,
         { headers }
       );
       if (response) {

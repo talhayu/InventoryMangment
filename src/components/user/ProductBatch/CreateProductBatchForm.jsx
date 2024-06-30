@@ -25,7 +25,7 @@ function CreateProductBatchForm({ onClose, productId }) {
       };
       console.log(formData)
       const response = await axios.post(
-        'https://productinventory.appaloinc.com/api/vi/productBatch/create',
+        `${process.env.REACT_APP_BASE_URL}/api/vi/productBatch/create`,
         formData,
         { headers }
       );

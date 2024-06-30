@@ -26,7 +26,7 @@ function BatchSaleAdmin() {
           const headers = {
             Authorization: `${token}`
           };
-          const response = await axios.get(`https://productinventory.appaloinc.com/api/vi/admin/batchSale/find`, { headers });
+          const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/vi/admin/batchSale/find`, { headers });
           setBatchSales(response.data.msg.data);
           console.log(response)
         } catch (error) {
@@ -66,6 +66,7 @@ function BatchSaleAdmin() {
     };
   
     const handleUpdateClick = (batchId) => {
+      console.log(batchId)
       setUpdatingBatchId(batchId);
     };
   
@@ -76,9 +77,10 @@ function BatchSaleAdmin() {
         };
   
         const response = await axios.patch(
-          `https://productinventory.appaloinc.com/api/vi/admin/batchSale/getByIdAndUpdate/${batchId}`,
+          `${process.env.REACT_APP_BASE_URL}/api/vi/admin/batchSale/getByIdAndUpdate/${batchId}`,
           updatedData,
           { headers }
+
         );
   
         setBatchSales(prevBatchSales => prevBatchSales.map(item => {
@@ -91,11 +93,9 @@ function BatchSaleAdmin() {
         toast.success('BatchSales updated successfully!');
       } catch (error) {
         console.log(error)
-        if (error.response && error.response.status === 404) {
-          toast.error('dasd');
-        } else {
-          toast.error('Error updating BatchSales.');
-        }
+        if (error.response && error.response.status === 404 || error.response.status === 400) {
+          toast.error(error.response.data);
+        } 
       } finally {
         setUpdatingBatchId(null);
       }
@@ -108,7 +108,7 @@ function BatchSaleAdmin() {
         };
   
         const response = await axios.delete(
-          `https://productinventory.appaloinc.com/api/vi/admin/batchSale/getByIdAndDelete/${batchId}`,
+          `${process.env.REACT_APP_BASE_URL}/api/vi/admin/batchSale/getByIdAndDelete/${batchId}`,
           { headers }
         );
   
@@ -159,7 +159,9 @@ function BatchSaleAdmin() {
                     {updatingBatchId === element._id ? (
                       <input
                         type="text"
-                        value={updatedBatchSales[element._id]?.soldQuantity || element.soldQuantity}
+                        value={updatedBatchSales[element._id]?.soldQuantity !== undefined 
+                          ? updatedBatchSales[element._id].soldQuantity 
+                          : element.soldQuantity}
                         onChange={e => handleChange(e, element._id, 'soldQuantity')}
                       />
                     ) : (

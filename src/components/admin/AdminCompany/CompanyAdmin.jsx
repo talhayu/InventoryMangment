@@ -33,7 +33,7 @@ function CompanyAdmin() {
                 Authorization: `${token}`
             };
             try {
-                const response = await axios.get('https://productinventory.appaloinc.com/api/vi/admin/company/find', { headers });
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/vi/admin/company/find`, { headers });
                 setCompany(response.data.msg.data);
                 setLoading(false);
             } catch (error) {
@@ -70,7 +70,7 @@ function CompanyAdmin() {
     const handleSaveUpdate = async (companyId, updatedData) => {
         try {
             const response = await axios.patch(
-                `https://productinventory.appaloinc.com/api/vi/admin/company/findByIdAndUpdate/${companyId}`,
+                `${process.env.REACT_APP_BASE_URL}/api/vi/admin/company/findByIdAndUpdate/${companyId}`,
                 updatedData,
                 { headers }
             );
@@ -96,7 +96,7 @@ function CompanyAdmin() {
 
     const handleDeleteClick = async (companyId) => {
         try {
-            await axios.delete(`https://productinventory.appaloinc.com/api/vi/admin/company/findByIdAndDelete/${companyId}`, { headers });
+            await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/vi/admin/company/findByIdAndDelete/${companyId}`, { headers });
             setCompany(company.filter(element => element._id !== companyId));
         } catch (error) {
             console.error('Error deleting element:', error);

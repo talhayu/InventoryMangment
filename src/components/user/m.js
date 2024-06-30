@@ -17,7 +17,7 @@ function Company() {
           Authorization: `${token}`
         };
 
-        const response = await axios.get('http://localhost:5050/api/vi/company/getAllCompanies', { headers });
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/vi/company/getAllCompanies`, { headers });
 
         console.log(response.data.msg.data)
         setCompanies(response.data.msg.data);

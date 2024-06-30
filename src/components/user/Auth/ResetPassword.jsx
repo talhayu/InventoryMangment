@@ -34,7 +34,7 @@ function ResetPassword() {
         password: password
       }
       console.log(password)
-      const response = await axios.get(`https://productinventory.appaloinc.com/api/vi/auth/reset-password/${userId}/${token}/${password}`, body);
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/vi/auth/reset-password/${userId}/${token}/${password}`, body);
       console.log(response)
       if (response.status == 200) {
         toast.success('pasword udopated succesfully')

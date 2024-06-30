@@ -33,7 +33,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://productinventory.appaloinc.com/api/vi/auth/login', {
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/vi/auth/login`, {
         email,
         password,
       });

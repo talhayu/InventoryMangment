@@ -21,6 +21,8 @@ import BatchSaleAdmin from './components/admin/AdminBatchSale/BatchSaleAdmin';
 import Register from './components/user/Auth/Register';
 import ForgetPassword from './components/user/Auth/ForgetPassword';
 import ResetPassword from './components/user/Auth/ResetPassword';
+import Batchidsearch from "./components/searchByBatchID/Batchidsearch";
+import Batchidurlsearch from "./components/searchByBatchID/batchidurlsearch";
 
 
 function App() {
@@ -35,6 +37,8 @@ function App() {
         <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path='/forgetpassword' element={<ForgetPassword/>} />
         <Route path='/reset-password/:userId/:token' element={<ResetPassword/>} />
+        <Route path='/searchbybatchID' element = {<Batchidsearch/>}/>
+        <Route path='/searchbybatchID/:id' element = {<Batchidurlsearch/>}/>
 
 
         <Route element={<RequireAuth allowedRoles={['user']} />}>

@@ -28,7 +28,7 @@ function ProductAdmin() {
     };
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://productinventory.appaloinc.com/api/vi/admin/product/find', { headers });
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/vi/admin/product/find`, { headers });
         setProduct(response.data.msg.data);
         setLoading(false);
       } catch (error) {
@@ -80,7 +80,7 @@ function ProductAdmin() {
         return;
       }
       const response = await axios.patch(
-        `https://productinventory.appaloinc.com/api/vi/admin/product/findByIdAndUpdate/${productId}`,
+        `${process.env.REACT_APP_BASE_URL}/api/vi/admin/product/findByIdAndUpdate/${productId}`,
         updatedData,
         { headers }
       );
@@ -112,7 +112,7 @@ function ProductAdmin() {
 
   const handleDeleteClick = async (productId) => {
     try {
-      await axios.delete(`https://productinventory.appaloinc.com/api/vi/admin/product/findByIdAndDelete/${productId}`, { headers });
+      await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/vi/admin/product/findByIdAndDelete/${productId}`, { headers });
       setProduct(product.filter(element => element._id !== productId));
     } catch (error) {
       console.error('Error deleting element:', error);

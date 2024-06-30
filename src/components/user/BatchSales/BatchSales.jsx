@@ -38,7 +38,7 @@ function BatchSales() {
         const headers = {
           Authorization: `${token}`
         };
-        const response = await axios.get(`https://productinventory.appaloinc.com/api/vi/batchSales/findByBatchName/${batchId}`, { headers });
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/vi/batchSales/findByBatchName/${batchId}`, { headers });
         setBatchSales(response.data.msg.data);
         console.log(response)
       } catch (error) {
@@ -85,7 +85,7 @@ function BatchSales() {
       };
 
       const response = await axios.patch(
-        `https://productinventory.appaloinc.com/api/vi/batchSales/getByIdAndUpdate/${batchId}`,
+        `${process.env.REACT_APP_BASE_URL}/api/vi/batchSales/getByIdAndUpdate/${batchId}`,
         updatedData,
         { headers }
       );
@@ -99,7 +99,7 @@ function BatchSales() {
 
       toast.success('BatchSales updated successfully!');
     } catch (error) {
-      if (error.response && error.response.status === 404) {
+      if (error.response && error.response.status === 404 || error.response.status === 400) {
         toast.error(error.response.data.msg.msg);
       } else {
         toast.error('Error updating BatchSales.');
@@ -116,7 +116,7 @@ function BatchSales() {
       };
 
       const response = await axios.delete(
-        `https://productinventory.appaloinc.com/api/vi/batchSales/getByIdAndDelete/${batchId}`,
+        `${process.env.REACT_APP_BASE_URL}/api/vi/batchSales/getByIdAndDelete/${batchId}`,
         { headers }
       );
 
@@ -167,7 +167,9 @@ function BatchSales() {
                   {updatingBatchId === element._id ? (
                     <input
                       type="text"
-                      value={updatedBatchSales[element._id]?.soldQuantity || element.soldQuantity}
+                      value={updatedBatchSales[element._id]?.soldQuantity !== undefined 
+                        ? updatedBatchSales[element._id].soldQuantity 
+                        : element.soldQuantity}
                       onChange={e => handleChange(e, element._id, 'soldQuantity')}
                     />
                   ) : (

@@ -36,7 +36,7 @@ function CreateUserAdminForm({ onClose }) {
       };
 
       const response = await axios.post(
-        'https://productinventory.appaloinc.com/api/vi/admin/user/create',
+        `${process.env.REACT_APP_BASE_URL}/api/vi/admin/user/create`,
         formData,
         { headers }
       );

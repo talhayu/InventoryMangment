@@ -26,7 +26,7 @@ function Product() {
         const headers = {
           Authorization: `${token}`
         };
-        const response = await axios.get(`https://productinventory.appaloinc.com/api/vi/product/findByCompanyName/${companyId}`, { headers });
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/vi/product/findByCompanyName/${companyId}`, { headers });
         setProduct(response.data.msg.data);
       } catch (error) {
         if (error.response.status === 404) {
@@ -71,7 +71,7 @@ function Product() {
       }
 
       const response = await axios.patch(
-        `https://productinventory.appaloinc.com/api/vi/product/findByIdAndUpdate/${productId}`,
+        `${process.env.REACT_APP_BASE_URL}/api/vi/product/findByIdAndUpdate/${productId}`,
         updatedData,
         { headers }
       );
@@ -97,7 +97,7 @@ function Product() {
       };
 
       const response = await axios.delete(
-        `https://productinventory.appaloinc.com/api/vi/product/findByIdAndDelete/${productId}`,
+        `${process.env.REACT_APP_BASE_URL}/api/vi/product/findByIdAndDelete/${productId}`,
         { headers }
       );
 
